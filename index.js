@@ -28,8 +28,52 @@ const posts = [
     }
 ]
 
+let igPost = document.querySelector("#post")
 
-function renderPost(){
+function renderPost() {
+    let allPost = ""
 
+    posts.map((element, id) =>{
+        allPost += `
+        <div class = "info"> 
+            <img class  = "avatar" src = "${element.avatar}">
+            <div>
+                <div><span class = "name bold">${element.name}</span></div>
+                    <span class="location">${element.location}</span>
+                </div>
+        </div>
+
+        <section>
+            <img class="img" src="${element.post}">
+        </section>
+
+        <section class = "like-commnent">
+            <!-- Like, comment, share -->
+            <img class = "icon heart" 
+                src="images/icon-heart.png" 
+                alt = "Icon heart">
+
+            <img class = "icon" 
+                src = "images/icon-comment.png" 
+                alt = "Icon comment">
+
+            <img class = "icon" 
+                src = "images/icon-dm.png" 
+                alt = "Icon dm">
+
+            <!-- Like counts -->
+            <p class = "like-count bold">${element.likes} likes</p>
+            <!-- Comment -->
+            <div class = "comment">
+                <p class = "other bold">${element.username} 
+                <span class= "small">${element.comment}</span>
+                </p>
+            </div>
+        </section>
+        `
+    })
+    igPost.innerHTML = allPost
 }
+
+renderPost();
 
