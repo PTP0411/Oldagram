@@ -28,3 +28,8 @@ const posts = [
     }
 ]
 
+
+function renderPost(){
+
+}
+
