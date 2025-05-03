@@ -51,7 +51,9 @@ function renderPost() {
             <!-- Like, comment, share -->
             <img class = "icon heart" 
                 src="images/icon-heart.png" 
-                alt = "Icon heart">
+                alt = "Icon heart"
+                id = "heart-${id}"
+                onclick = "addRemoveLikes(${id})">
 
             <img class = "icon" 
                 src = "images/icon-comment.png" 
@@ -62,7 +64,7 @@ function renderPost() {
                 alt = "Icon dm">
 
             <!-- Like counts -->
-            <p class = "like-count bold">${element.likes} likes</p>
+            <p class = "like-count bold" id = "likes-${id}">${element.likes} likes</p>
             <!-- Comment -->
             <div class = "comment">
                 <p class = "other bold">${element.username} 
@@ -77,3 +79,20 @@ function renderPost() {
 
 renderPost();
 
+function addRemoveLikes(id){
+    const iconLikes = document.querySelector(`#heart-${id}`);
+    const likesCountEL = document.querySelector(`#likes-${id}`);
+    let likes = posts[id].likes;
+   
+    iconLikes.classList.toggle("like-yes");
+  
+    
+    if (iconLikes.classList.contains("like-yes")) {
+          likes += 1;
+          likesCountEL.textContent = likes + " likes";
+          iconLikes.src = "images/heart-icon-red.png";
+      } else {
+          likesCountEL.textContent = likes + " likes";
+          iconLikes.src = "images/icon-heart.png";
+      }
+}
